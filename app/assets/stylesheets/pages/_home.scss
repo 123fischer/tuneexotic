@@ -20,6 +20,7 @@ a {
 }
 // Banner
 .banner {
+  position: relative;
   background-image: url("greenleafes.jpg");
   background-size: cover;
   background-position: center;
@@ -86,6 +87,9 @@ a {
 }
 
 #container {
+  position: absolute;
+    top: 15px;
+    right: 15px;
   text-align: center;
   }
 // Footer
