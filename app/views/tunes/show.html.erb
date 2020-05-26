@@ -1,0 +1,8 @@
+  <div class="tune-card">
+    <h1><%= tune.name %></h1>
+    <%= tune.description %>
+    <% if current_user %>
+      <%= tune.url %>
+    <% end %>
+  </div>
+<% end %>
