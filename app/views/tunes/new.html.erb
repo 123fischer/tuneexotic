@@ -1,0 +1,11 @@
+<div class="row justify-content-center">
+  <div class="card p-3 m-3 w-50">
+    <h2>Create a new TUNE!!</h2>
+    <%= simple_form_for @tune do |f| %>
+      <%= f.input :name %>
+      <%= f.input :description %>
+      <%= f.input :url %>
+      <%= f.submit "Create tune", class: "btn btn-primary"  %>
+    <% end %>
+  </div>
+</div>
