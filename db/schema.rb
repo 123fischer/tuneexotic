@@ -10,10 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_25_155205) do
+ActiveRecord::Schema.define(version: 2020_05_26_092843) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "favorits", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "tune_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["tune_id"], name: "index_favorits_on_tune_id"
+    t.index ["user_id"], name: "index_favorits_on_user_id"
+  end
+
+  create_table "requests", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "tune_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["tune_id"], name: "index_requests_on_tune_id"
+    t.index ["user_id"], name: "index_requests_on_user_id"
+  end
 
   create_table "tunes", force: :cascade do |t|
     t.string "name"
@@ -38,5 +56,9 @@ ActiveRecord::Schema.define(version: 2020_05_25_155205) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "favorits", "tunes"
+  add_foreign_key "favorits", "users"
+  add_foreign_key "requests", "tunes"
+  add_foreign_key "requests", "users"
   add_foreign_key "tunes", "users"
 end
