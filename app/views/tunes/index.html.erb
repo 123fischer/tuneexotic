@@ -1,0 +1,9 @@
+<% @tunes.each do |tune| %>
+  <div class="tune-card">
+    <%= tune.name %>
+    <%= tune.description %>
+    <% if current_user %>
+      <%= tune.url %>
+    <% end %>
+  </div>
+<% end %>
