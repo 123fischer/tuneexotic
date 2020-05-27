@@ -1,5 +1,5 @@
 class RequestsController < ApplicationController
-  before_action :set_tune, only: [:accept, :reject]
+  before_action :set_request, only: [:accept, :reject]
 
   def create
     @request = Request.new

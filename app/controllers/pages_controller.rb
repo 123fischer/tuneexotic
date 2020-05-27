@@ -5,7 +5,7 @@ class PagesController < ApplicationController
 
   def dashboard
     @requests = Request.all
-    @requests.select { |request| request.status == "pending" }
+    @requests = @requests.select { |request| request.status == "pending" }
     @my_requests = []
     @requests.each do |request|
       if request.tune.user == current_user
