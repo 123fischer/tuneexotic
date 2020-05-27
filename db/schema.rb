@@ -25,6 +25,15 @@ ActiveRecord::Schema.define(version: 2020_05_27_094133) do
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
+  create_table "favorits", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "tune_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["tune_id"], name: "index_favorits_on_tune_id"
+    t.index ["user_id"], name: "index_favorits_on_user_id"
+  end
+
   create_table "requests", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "tune_id", null: false
@@ -60,6 +69,8 @@ ActiveRecord::Schema.define(version: 2020_05_27_094133) do
 
   add_foreign_key "favorites", "tunes"
   add_foreign_key "favorites", "users"
+  add_foreign_key "favorits", "tunes"
+  add_foreign_key "favorits", "users"
   add_foreign_key "requests", "tunes"
   add_foreign_key "requests", "users"
   add_foreign_key "tunes", "users"
