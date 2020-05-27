@@ -1,7 +1,10 @@
+
+
+
 <div class="row p-3 m-0 justify-content-around">
   <% @tunes.each do |tune| %>
     <div class="card col-m-3 my-2 ">
-      <h1><%= link_to tune.name, tune_path(tune) %></h1>
+      <h3><%= link_to tune.name, tune_path(tune) %></h3>
       <p><%= tune.description %> |
       <% if user_signed_in? %>
         <%= tune.url %>
@@ -10,3 +13,6 @@
     </div>
   <% end %>
 </div>
+
+<a class="btn btn-secondary m-5" href="/tunes/new">Create new tune</a>
+

@@ -1,2 +1,13 @@
 // Import page-specific CSS files here.
 @import "home";
+
+a {
+  text-decoration: none;
+  color: #393D3F;
+   &:hover {
+    color: #538083;
+    text-decoration: none;
+  }
+}
+
+
