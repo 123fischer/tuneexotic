@@ -2,3 +2,12 @@
 @import "home";
 @import "show";
 
+a {
+  text-decoration: none;
+  color: #393D3F;
+   &:hover {
+    color: #538083;
+    text-decoration: none;
+  }
+}
+
