@@ -1,2 +1,10 @@
-<h1>Test</h1>
+<div class="notification">
+<h1> Welcome <%= current_user.email %></h1>
 
+  <% @my_requests.each do |request| %>
+    <h2><%= request.user.email %> wants to use your tune <%= request.tune.name %></h2>
+    <p> <%= link_to "Accept", accept_request_path(request), method: :patch %> | <%= link_to "Reject", reject_request_path(request), method: :patch %> </p>
+  <% end %>
+
+
+</div>

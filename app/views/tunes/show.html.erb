@@ -6,10 +6,8 @@
       <% if current_user %>
         <%= @tune.url %>
       <% end %>
-      <%= simple_form_for [@tune, @request] do |f| %>
+     <%= link_to "Request now", tune_requests_path(@tune), method: :post, class: "btn btn-primary" %>
 
-      <%= f.submit "Add request", class: "btn btn-primary"  %>
-    <% end %>
 
     </div>
   </div>
