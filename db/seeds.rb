@@ -15,8 +15,8 @@ puts 'creating tunes'
   password = "123456"
   name = "Test"
   user = User.create(email: email, name: name, password: password)
-  name = Faker::Superhero.power
-  description = Faker::Lorem.sentences
+  name = Faker::Hipster.words
+  description = Faker::Hipster.sentences
   url = Faker::Internet.domain_name
   tune = Tune.new(name: name, description: description, url: url)
   tune.user = user

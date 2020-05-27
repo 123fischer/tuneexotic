@@ -1,18 +1,17 @@
 // Specific CSS for your home-page
 body {
   margin: 0;
-  font-family: Open Sans;
+  // font-family: Open Sans;
   background-color: #FFFAFB;
-
-;
 }
 
-h1, h2, h3, h4 {
-  font-family: Poppins;
-}
 
 a {
   text-decoration: none;
+   &:hover {
+    color: #393D3F;
+    text-decoration: none;
+  }
 }
 
 .text-center {
@@ -20,7 +19,8 @@ a {
 }
 // Banner
 .banner {
-  background-image: url("greenleafes.jpg");
+  position: relative;
+  background-image: asset_url("greenleafes.jpg");
   background-size: cover;
   background-position: center;
   padding: 200px 0;
@@ -38,17 +38,16 @@ a {
 // Buttons
 .btn-primary {
   display: inline-block;
-  background-color: #1EDD88;
+  background-color: #62929E;
   padding: 16px 36px;
   border-radius: 5px;
   color: white;
 }
 
 .btn-secondary {
-  border: 1px solid #1EDD88;
   padding: 8px 16px;
   border-radius: 5px;
-  color: #1EDD88;
+  color: white;
 }
 // Cards
 
@@ -86,6 +85,9 @@ a {
 }
 
 #container {
+  position: absolute;
+    top: 15px;
+    right: 15px;
   text-align: center;
   }
 // Footer
