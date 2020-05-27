@@ -1,10 +1,12 @@
-<% @tunes.each do |tune| %>
-  <div class="card">
-    <h1><%= tune.name %></h1>
-    <p><%= tune.description %> |
-    <% if current_user %>
-      <%= tune.url %>
-    <% end %>
-  </p>
-  </div>
-<% end %>
+<div class="row p-3 m-0 justify-content-around">
+  <% @tunes.each do |tune| %>
+    <div class="card col-m-3 my-2 ">
+      <h1><%= link_to tune.name, tune_path(tune) %></h1>
+      <p><%= tune.description %> |
+      <% if user_signed_in? %>
+        <%= tune.url %>
+      <% end %>
+    </p>
+    </div>
+  <% end %>
+</div>
