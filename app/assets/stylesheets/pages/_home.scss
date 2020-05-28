@@ -38,10 +38,28 @@ a {
 // Buttons
 .btn-primary {
   display: inline-block;
-  background-color: #62929E;
+  background-color: #39375B;
+  border: 1px solid #4A4A4A;
   padding: 16px 36px;
   border-radius: 5px;
   color: white;
+  &:hover {
+    color: white;
+    background-color: #5F5C99;
+    border: 1px solid #4A4A4A;
+  }
+}
+
+.btn-banner {
+  display: inline-block;
+  background-color: #649d66;
+  padding: 16px 36px;
+  border-radius: 5px;
+  color: white;
+  &:hover {
+    color: white;
+    background-color: #39375B;
+  }
 }
 
 .btn-secondary {
