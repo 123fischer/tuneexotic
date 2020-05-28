@@ -1,11 +1,11 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="card p-3 m-3 w-50">
-      <h2>Create a new exotic tune!</h2>
+      <h2>Edit <%= @tune.name %> !</h2>
       <%= simple_form_for @tune do |f| %>
         <%= f.input :name, required: true%>
         <%= f.input :description, as: :text %>
-        <%= f.input :url, placeholder: 'https://www.tune.com', required: true %>
+        <%= f.input :url, required: true %>
         <%= f.submit "Let's go!", class: "btn btn-primary"  %>
       <% end %>
     </div>

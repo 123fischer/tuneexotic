@@ -1,10 +1,30 @@
-<div class="notification">
-<h1> Welcome <%= current_user.email %></h1>
 
-  <% @my_requests.each do |request| %>
-    <h2><%= request.user.email %> wants to use your tune <%= request.tune.name %></h2>
-    <p> <%= link_to "Accept", accept_request_path(request), method: :patch %> | <%= link_to "Reject", reject_request_path(request), method: :patch %> </p>
+<div class="container">
+  <% @requests.each do |request| %>
+  <div class="notification">
+    <div class="notification-content">
+      <p><strong><%= request.user.name %></strong> wants to use your tune <strong><%= request.tune.name %></strong></p>
+    </div>
+
+    <div class="notification-actions">
+      <%= link_to "Accept", accept_request_path(request), method: :patch, class: :two_space, id: :accept %>
+      <%= link_to "Reject", reject_request_path(request), method: :patch, class: :two_space, id: :reject %>
+    </div>
+  </div>
   <% end %>
+</div>
 
-
+<div class="container tunes-container">
+  <div class="cards">
+    <% @tunes.each do |tune| %>
+      <div class="card">
+        <h3><%= tune.name %></h3>
+        <p><%= tune.description %></p>
+          <div class="notification-actions">
+            <%= link_to "Edit", edit_tune_path(tune) %>
+            <%= link_to "Delete", tune_path(tune), method: :delete %>
+          </div>
+      </div>
+    <% end %>
+  </div>
 </div>
