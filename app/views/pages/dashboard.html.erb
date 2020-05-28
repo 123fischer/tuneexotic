@@ -1,31 +1,51 @@
 
-<div class="container">
-  <% @requests.each do |request| %>
-  <div class="notification">
-    <div class="notification-content">
-      <p><strong><%= request.user.name %></strong> wants to use your tune <strong><%= request.tune.name %></strong></p>
+  <% if @requests.empty? %>
+    <div class="text-center mt-3 text-secondary">
+      <p>You don't have any requests</p>
     </div>
+  <% else %>
+    <div class="container">
+      <% @requests.each do |request| %>
+      <div class="notification">
+        <div class="notification-content">
+          <p><strong><%= request.user.name %></strong> wants to use your tune <strong><%= request.tune.name %></strong></p>
+        </div>
 
-    <div class="notification-actions">
-      <%= link_to "Accept", accept_request_path(request), method: :patch, class: :two_space, id: :accept %>
-      <%= link_to "Reject", reject_request_path(request), method: :patch, class: :two_space, id: :reject %>
-    </div>
-  </div>
-  <% end %>
-</div>
-
-<div class="container tunes-container">
-  <div class="cards">
-    <% @tunes.each do |tune| %>
-      <div class="card">
-        <h3><%= tune.name %></h3>
-        <p><%= tune.description %></p>
-        <p> <%= tune.music.key  %></p>
-          <div class="notification-actions">
-            <%= link_to "Edit", edit_tune_path(tune) %>
-            <%= link_to "Delete", tune_path(tune), method: :delete %>
-          </div>
+        <div class="notification-actions">
+          <%= link_to "Accept", accept_request_path(request), method: :patch, class: 'two_space font-weight-bold', id: :accept %>
+          <%= link_to "Reject", reject_request_path(request), method: :patch, class: 'two_space font-weight-bold', id: :reject %>
+        </div>
       </div>
-    <% end %>
-  </div>
-</div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% if @tunes.empty? %>
+    <div class="text-center mt-3 text-secondary">
+      <p>You don't have any tunes</p>
+    </div>
+    <div class="text-center">
+      <a class="btn btn-primary m-3" href="/tunes/new">Create new tune</a>
+    </div>
+  <% else %>
+    <div class="container">
+      <% @tunes.each do |tune| %>
+        <div class="card-product">
+          <div class="card-product-infos">
+              <h2><%= tune.name %></h2>
+              <p><%= tune.description %></p>
+          </div>
+          <div class="audio">
+            <% if tune.music.attached? %>
+              <%= audio_tag(rails_blob_url(tune.music), controls: true) %>
+            <% end %>
+          </div>
+          <div class="controls">
+            <%= link_to "Edit", edit_tune_path(tune), class: "text-primary align-items-end mr-1" %>
+            <%= link_to "Delete", tune_path(tune), method: :delete, class: "text-danger align-items-end ml-2" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
