@@ -36,13 +36,13 @@ class TunesController < ApplicationController
   end
 
   def update
-    @tune.update(name: params[:name], description: params[:description], url: params[:url])
-    redirect_to tune_path(@tune)
+    @tune.update(tune_params)
+    redirect_to dashboard_path
   end
 
   def destroy
     @tune.destroy
-    redirect_to tunes_path
+    redirect_to dashboard_path
   end
 
   private
