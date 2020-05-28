@@ -11,6 +11,10 @@
           <%= tune.url %>
         <% end %>
       </p>
+      <% if tune.music.attached? %>
+       <%= audio_tag(rails_blob_url(tune.music), controls: true) %>
+      <% end %>
+
       </div>
     <% end %>
   </div>
