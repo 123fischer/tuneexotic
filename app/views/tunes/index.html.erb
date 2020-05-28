@@ -14,16 +14,17 @@
       </div>
     <% end %>
   </div>
-
-  <a class="btn btn-secondary m-5" href="/tunes/new">Create new tune</a>
-<div>
-  <%= form_tag tunes_path, method: :get do %>
-    <%= text_field_tag :query,
-      params[:query],
-      class: "form-control",
-      placeholder: "Find a tune"
-    %>
-    <%= submit_tag "Search", class: "btn btn-primary" %>
+  <% if user_signed_in? %>
+    <a class="btn btn-secondary m-5" href="/tunes/new">Create new tune</a>
   <% end %>
+  <div>
+    <%= form_tag tunes_path, method: :get do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control",
+        placeholder: "Find a tune"
+      %>
+      <%= submit_tag "Search", class: "btn btn-primary" %>
+    <% end %>
   </div>
 </div>
