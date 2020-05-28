@@ -1,15 +1,29 @@
-<div class="row p-3 m-0 justify-content-around">
-  <% @tunes.each do |tune| %>
-    <div class="card col-m-3 my-2 ">
-      <h3><%= link_to tune.name, tune_path(tune) %></h3>
-      <p><%= tune.description %> |
-      <% if user_signed_in? %>
-        <%= tune.url %>
-      <% end %>
-    </p>
-    </div>
+
+<div class="container tunes-container">
+
+
+  <div class="cards">
+    <% @tunes.each do |tune| %>
+      <div class="card">
+        <h3><%= link_to tune.name, tune_path(tune) %></h3>
+        <p><%= tune.description %> |
+        <% if user_signed_in? %>
+          <%= tune.url %>
+        <% end %>
+      </p>
+      </div>
+    <% end %>
+  </div>
+
+  <a class="btn btn-secondary m-5" href="/tunes/new">Create new tune</a>
+<div>
+  <%= form_tag tunes_path, method: :get do %>
+    <%= text_field_tag :query,
+      params[:query],
+      class: "form-control",
+      placeholder: "Find a tune"
+    %>
+    <%= submit_tag "Search", class: "btn btn-primary" %>
   <% end %>
+  </div>
 </div>
-
-<a class="btn btn-secondary m-5" href="/tunes/new">Create new tune</a>
-

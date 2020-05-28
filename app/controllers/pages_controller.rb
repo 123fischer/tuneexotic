@@ -4,14 +4,20 @@ class PagesController < ApplicationController
   end
 
   def dashboard
+    @requests = user_requests
+    @tunes = user_tunes
+  end
+
+  private
+
+  def user_requests
     @requests = Request.all
+    @requests = @requests.select { |request| request.tune.user == current_user }
     @requests = @requests.select { |request| request.status == "pending" }
-    @my_requests = []
-    @requests.each do |request|
-      if request.tune.user == current_user
-        @my_requests << request
-      end
-    end
-    @my_requests
+  end
+
+  def user_tunes
+    @tunes = Tune.all
+    @tunes = @tunes.select { |tune| tune.user == current_user }
   end
 end

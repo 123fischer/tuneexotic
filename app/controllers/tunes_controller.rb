@@ -2,7 +2,16 @@ class TunesController < ApplicationController
   before_action :set_tune, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tunes = Tune.all
+      if params[:query].present?
+      sql_query = " \
+        tunes.name @@ :query \
+        OR tunes.description @@ :query \
+        OR users.name @@ :query \
+      "
+      @tunes = Tune.joins(:user).where(sql_query, query: "%#{params[:query]}%")
+    else
+      @tunes = Tune.all
+    end
   end
 
   def show
@@ -27,13 +36,13 @@ class TunesController < ApplicationController
   end
 
   def update
-    @tune.update(name: params[:name], description: params[:description], url: params[:url])
-    redirect_to tune_path(@tune)
+    @tune.update(tune_params)
+    redirect_to dashboard_path
   end
 
   def destroy
     @tune.destroy
-    redirect_to tunes_path
+    redirect_to dashboard_path
   end
 
   private

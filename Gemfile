@@ -33,6 +33,8 @@ gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'devise'
 gem 'faker'
+gem "bourbon"
+gem 'pg_search'
 
 
 group :development, :test do
