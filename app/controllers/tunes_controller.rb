@@ -4,13 +4,14 @@ class TunesController < ApplicationController
   def index
       if params[:query].present?
       sql_query = " \
-        tunes.name @@ :query \
-        OR tunes.description @@ :query \
-        OR users.name @@ :query \
+        tunes.name ILIKE :query \
+        OR tunes.description ILIKE :query \
       "
       @tunes = Tune.joins(:user).where(sql_query, query: "%#{params[:query]}%")
+      @requests = Request.all
     else
       @tunes = Tune.all
+      @requests = Request.all
     end
   end
 

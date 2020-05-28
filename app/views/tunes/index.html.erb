@@ -1,8 +1,7 @@
 <div class="container tunes-container">
 
- <div class="top_buttons">
-
-    <div class="top_buttons mx-3 my-2">
+  <div class="top_buttons">
+    <div class="top_buttons mx-3 my-2 form-inline">
     <%= form_tag tunes_path, method: :get do %>
       <%= text_field_tag :query,
         params[:query],
@@ -13,24 +12,42 @@
     <% end %>
     </div>
     <div>
-        <a class="btn btn-primary m-3" href="/tunes/new">Create new tune</a>
+      <a class="btn btn-primary m-3" href="/tunes/new">Create new tune</a>
     </div>
   </div>
 
-  <div class="cards">
+  <div class="container">
     <% @tunes.each do |tune| %>
-      <div class="card">
-        <h3><%= link_to tune.name, tune_path(tune) %></h3>
-        <p><%= tune.description %> |
-        <% if user_signed_in? %>
-          <%= tune.url %>
+      <div class="card-product">
+        <div class="card-product-infos">
+            <h2><%= tune.name %></h2>
+            <p><%= tune.description %></p>
+        </div>
+        <% @my_tune_requests = @requests.select { |request| request.tune == tune && request.user == current_user } %>
+        <% if @my_tune_requests.empty? || @my_tune_requests.nil? %>
+          <div class="index-view-btn">
+            <%= link_to "Request tune", tune_requests_path(tune), class: "btn btn-primary", method: :post %>
+          </div>
+        <% else %>
+          <% if @my_tune_requests[0].status == "pending" %>
+            <div class="index-view-btn">
+              <a href="" class="btn btn-warning">Tune is pending</a>
+            </div>
+          <% elsif @my_tune_requests[0].status == "accepted" %>
+            <div class="index-view">
+              <% if tune.music.attached? %>
+                <%= audio_tag(rails_blob_url(tune.music), controls: true) %>
+              <% end %>
+            </div>
+          <% else %>
+            <div class="index-view-btn">
+              <a href="" class="btn btn-danger">Tune in private</a>
+            </div>
+          <% end %>
         <% end %>
-      </p>
-      <% if tune.music.attached? %>
-       <%= audio_tag(rails_blob_url(tune.music), controls: true) %>
-      <% end %>
-
       </div>
     <% end %>
   </div>
 </div>
+
+
