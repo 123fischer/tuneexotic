@@ -11,7 +11,6 @@
               <%= f.input :name, required: true %>
               <%= f.input :description, as: :text %>
               <%= f.input :music, as: :file, required: true %>
-              <%= f.input :url, placeholder: 'https://www.tune.com', required: true %>
               <%= f.submit "Create tune", class: "btn btn-primary"  %>
             <% end %>
         </div>
