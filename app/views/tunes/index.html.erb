@@ -1,6 +1,21 @@
-
 <div class="container tunes-container">
 
+ <div class="top_buttons">
+
+    <div class="top_buttons mx-3 my-2">
+    <%= form_tag tunes_path, method: :get do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control m-1",
+        placeholder: "Find a tune"
+      %>
+      <%= submit_tag "Search", class: "btn btn-secondary m-1" %>
+    <% end %>
+    </div>
+    <div>
+        <a class="btn btn-primary m-3" href="/tunes/new">Create new tune</a>
+    </div>
+  </div>
 
   <div class="cards">
     <% @tunes.each do |tune| %>
@@ -16,19 +31,6 @@
       <% end %>
 
       </div>
-    <% end %>
-  </div>
-  <% if user_signed_in? %>
-    <a class="btn btn-secondary m-5" href="/tunes/new">Create new tune</a>
-  <% end %>
-  <div>
-    <%= form_tag tunes_path, method: :get do %>
-      <%= text_field_tag :query,
-        params[:query],
-        class: "form-control",
-        placeholder: "Find a tune"
-      %>
-      <%= submit_tag "Search", class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>

@@ -43,3 +43,13 @@ a {
     grid-template-columns: 1fr 1fr;
   }
 }
+
+  .form-control{
+  width:250px;
+  padding-top: 24 px;
+}
+
+.top_buttons{
+  display:flex;
+  justify-content: space-between;
+}
