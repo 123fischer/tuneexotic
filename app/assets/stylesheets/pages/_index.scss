@@ -13,11 +13,15 @@ a {
   }
 }
 
-.tunes-container{
-  width: 1200px;
-  margin: 0 auto;
+.form-control{
+  width:500px;
+  padding-top: 24 px;
 }
 
+.top_buttons{
+  display:flex;
+  justify-content: space-between;
+}
 .cards{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -44,12 +48,3 @@ a {
   }
 }
 
-  .form-control{
-  width:250px;
-  padding-top: 24 px;
-}
-
-.top_buttons{
-  display:flex;
-  justify-content: space-between;
-}

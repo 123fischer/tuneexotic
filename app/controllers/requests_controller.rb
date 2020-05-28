@@ -8,7 +8,7 @@ class RequestsController < ApplicationController
     @request.tune = @tune
 
     if @request.save
-      redirect_to tune_path(@tune)
+      redirect_to tunes_path
     else
       render :new
     end
