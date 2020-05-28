@@ -1,7 +1,7 @@
 // Import page-specific CSS files here.
 @import "home";
 @import "show";
-@import "dashboard";
+
 
 
 a {
@@ -43,4 +43,14 @@ a {
   .cards {
     grid-template-columns: 1fr 1fr;
   }
+}
+
+.form-control{
+  width:250px;
+  padding-top: 24 px;
+}
+
+.top_buttons{
+  display:flex;
+  justify-content: space-between;
 }
