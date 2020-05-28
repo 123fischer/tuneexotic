@@ -26,7 +26,7 @@ class TunesController < ApplicationController
     @tune = Tune.new(tune_params)
     @tune.user = current_user
     if @tune.save
-      redirect_to tune_path(@tune)
+      redirect_to dashboard_path
     else
       render :new
     end
@@ -52,6 +52,6 @@ class TunesController < ApplicationController
   end
 
   def tune_params
-    params.require(:tune).permit(:name, :description, :url)
+    params.require(:tune).permit(:name, :description, :url, :music)
   end
 end

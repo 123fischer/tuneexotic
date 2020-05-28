@@ -20,6 +20,7 @@
       <div class="card">
         <h3><%= tune.name %></h3>
         <p><%= tune.description %></p>
+        <p> <%= tune.music.key  %></p>
           <div class="notification-actions">
             <%= link_to "Edit", edit_tune_path(tune) %>
             <%= link_to "Delete", tune_path(tune), method: :delete %>
