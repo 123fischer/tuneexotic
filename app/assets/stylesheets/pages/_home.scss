@@ -83,6 +83,17 @@ a {
     opacity: .5;
   }
 }
+
+.card-form {
+  width: 550px;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgb(230,230,230);
+  text-align: center;
+  padding: 20px;
+  margin: 20px;
+  border: 1px solid rgb(230,230,230);
+}
+
 .icon {
   font-size: 48px;
   padding: 32px;
