@@ -53,6 +53,6 @@ class TunesController < ApplicationController
   end
 
   def tune_params
-    params.require(:tune).permit(:name, :description, :url, :music)
+    params.require(:tune).permit(:name, :description, :url)
   end
 end

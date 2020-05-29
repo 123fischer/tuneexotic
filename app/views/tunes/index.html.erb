@@ -45,9 +45,7 @@
             </div>
           <% elsif @my_tune_requests[0].status == "accepted" %>
             <div class="index-view">
-              <% if tune.music.attached? %>
-                <%= audio_tag(rails_blob_url(tune.music), controls: true) %>
-              <% end %>
+              <a href="<%= tune.url %> " class="btn btn-success rounded" target="blank">Play/Download tune</a>
             </div>
           <% else %>
             <div class="index-view-btn">

@@ -36,9 +36,7 @@
               <p><%= tune.description %></p>
           </div>
           <div class="audio">
-            <% if tune.music.attached? %>
-              <%= audio_tag(rails_blob_url(tune.music), controls: true) %>
-            <% end %>
+              <a href="<%= tune.url %> " class="btn btn-success rounded" target="blank">Play/Download tune</a>
           </div>
           <div class="controls">
             <%= link_to "Edit", edit_tune_path(tune), class: "text-primary align-items-end mr-1" %>
