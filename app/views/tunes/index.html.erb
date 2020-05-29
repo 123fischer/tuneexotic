@@ -8,12 +8,12 @@
         class: "form-control m-1",
         placeholder: "Find a tune"
       %>
-      <%= submit_tag "Search", class: "btn btn-secondary m-1" %>
+      <%= submit_tag "Search", class: "btn btn-search m-1" %>
     <% end %>
     </div>
     <% if user_signed_in? %>
       <div>
-        <a class="btn btn-primary m-3" href="/tunes/new">Create new tune</a>
+        <a class="btn btn-create m-3" href="/tunes/new">Create new tune</a>
       </div>
     <% else %>
         <h5 class="text-muted mt-4">Sign in to request and create tunes</h5>
