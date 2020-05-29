@@ -13,9 +13,8 @@
 
   <body>
     <%= render 'shared/navbar' unless params[:controller] == 'pages' && params[:action] == 'home'%>
-
     <%= render 'shared/flashes' %>
     <%= yield %>
-    
+
   </body>
 </html>
