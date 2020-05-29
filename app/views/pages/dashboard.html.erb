@@ -36,7 +36,7 @@
               <p><%= tune.description %></p>
           </div>
           <div class="audio">
-              <a href="<%= tune.url %> " class="btn btn-success rounded" target="blank">Play/Download tune</a>
+            <%= audio_tag(tune.url, controls: true) %>
           </div>
           <div class="controls">
             <%= link_to "Edit", edit_tune_path(tune), class: "text-primary align-items-end mr-1" %>
