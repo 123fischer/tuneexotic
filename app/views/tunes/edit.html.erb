@@ -5,7 +5,7 @@
       <%= simple_form_for @tune do |f| %>
         <%= f.input :name, required: true %>
         <%= f.input :description, as: :text %>
-        <%= f.input :music, as: :file, required: true %>
+        <%= f.input :url, as: :text %>
         <%= f.submit "Let's go!", class: "btn btn-primary"  %>
       <% end %>
     </div>
