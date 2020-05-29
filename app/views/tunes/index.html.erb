@@ -1,66 +1,68 @@
-<div class="container tunes-container">
+<div class="bg-tiger">
+  <div class="container tunes-container">
 
-  <div class="top_buttons">
-    <div class="top_buttons mx-3 my-2 form-inline">
-    <%= form_tag tunes_path, method: :get do %>
-      <%= text_field_tag :query,
-        params[:query],
-        class: "form-control m-1",
-        placeholder: "Find a tune"
-      %>
-      <%= submit_tag "Search", class: "btn btn-search m-1" %>
-    <% end %>
-    </div>
-    <% if user_signed_in? %>
-      <div>
-        <a class="btn btn-create m-3" href="/tunes/new">Create new tune</a>
+    <div class="top_buttons">
+      <div class="top_buttons mx-3 my-2 form-inline">
+      <%= form_tag tunes_path, method: :get do %>
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control m-1",
+          placeholder: "Find a tune"
+        %>
+        <%= submit_tag "Search", class: "btn btn-search m-1" %>
+      <% end %>
       </div>
-    <% else %>
-        <h5 class="text-muted mt-4">Sign in to request and create tunes</h5>
-    <% end %>
-  </div>
-
-  <div class="container">
-    <% @tunes.each do |tune| %>
-      <div class="card-product">
-        <div class="card-product-infos">
-            <h2><%= tune.name %></h2>
-            <p><%= tune.description %></p>
+      <% if user_signed_in? %>
+        <div>
+          <a class="btn btn-create m-3" href="/tunes/new">Create new tune</a>
         </div>
-        <% @my_tune_requests = @requests.select { |request| request.tune == tune && request.user == current_user } %>
-        <% if @my_tune_requests.empty? || @my_tune_requests.nil? %>
-          <% if user_signed_in? %>
-            <% if tune.user == current_user %>
+      <% else %>
+          <h5 class="text-muted mt-4">Sign in to request and create tunes</h5>
+      <% end %>
+    </div>
+
+    <div class="container">
+      <% @tunes.each do |tune| %>
+        <div class="card-product">
+          <div class="card-product-infos">
+              <h2><%= tune.name %></h2>
+              <p><%= tune.description %></p>
+          </div>
+          <% @my_tune_requests = @requests.select { |request| request.tune == tune && request.user == current_user } %>
+          <% if @my_tune_requests.empty? || @my_tune_requests.nil? %>
+            <% if user_signed_in? %>
+              <% if tune.user == current_user %>
+                <div class="index-view">
+                  <%= audio_tag(tune.url, controls: true) %>
+                </div>
+              <% else %>
+                <div class="index-view-btn">
+                  <%= link_to "Request tune", tune_requests_path(tune), class: "btn btn-primary", method: :post %>
+                </div>
+              <% end %>
+            <% else %>
+              <div class="index-view-btn">
+                <%= link_to "Request tune", new_user_session_path, class: "btn btn-primary", method: :post %>
+              </div>
+            <% end %>
+          <% else %>
+            <% if @my_tune_requests[0].status == "pending" %>
+              <div class="index-view-btn">
+                <a href="" class="btn btn-warning">Pending user ...</a>
+              </div>
+            <% elsif @my_tune_requests[0].status == "accepted" %>
               <div class="index-view">
                 <%= audio_tag(tune.url, controls: true) %>
               </div>
             <% else %>
               <div class="index-view-btn">
-                <%= link_to "Request tune", tune_requests_path(tune), class: "btn btn-primary", method: :post %>
+                <a href="" class="btn btn-danger">Access denied</a>
               </div>
             <% end %>
-          <% else %>
-            <div class="index-view-btn">
-              <%= link_to "Request tune", new_user_session_path, class: "btn btn-primary", method: :post %>
-            </div>
           <% end %>
-        <% else %>
-          <% if @my_tune_requests[0].status == "pending" %>
-            <div class="index-view-btn">
-              <a href="" class="btn btn-warning">Pending user ...</a>
-            </div>
-          <% elsif @my_tune_requests[0].status == "accepted" %>
-            <div class="index-view">
-              <%= audio_tag(tune.url, controls: true) %>
-            </div>
-          <% else %>
-            <div class="index-view-btn">
-              <a href="" class="btn btn-danger">Access denied</a>
-            </div>
-          <% end %>
-        <% end %>
-      </div>
-    <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
 

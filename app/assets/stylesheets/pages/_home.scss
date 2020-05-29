@@ -2,7 +2,14 @@
 body {
   margin: 0;
   // font-family: Open Sans;
-  background-color: #f7f7ff;
+  background-color:white;
+  position: relative;
+}
+
+.bg-tiger {
+  background-image: asset_url("Tiger.jpg");
+  margin:0;
+  padding-bottom: 40px;
 }
 
 a {
