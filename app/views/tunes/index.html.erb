@@ -30,9 +30,15 @@
         <% @my_tune_requests = @requests.select { |request| request.tune == tune && request.user == current_user } %>
         <% if @my_tune_requests.empty? || @my_tune_requests.nil? %>
           <% if user_signed_in? %>
-            <div class="index-view-btn">
-              <%= link_to "Request tune", tune_requests_path(tune), class: "btn btn-primary", method: :post %>
-            </div>
+            <% if tune.user == current_user %>
+              <div class="index-view">
+                <%= audio_tag(tune.url, controls: true) %>
+              </div>
+            <% else %>
+              <div class="index-view-btn">
+                <%= link_to "Request tune", tune_requests_path(tune), class: "btn btn-primary", method: :post %>
+              </div>
+            <% end %>
           <% else %>
             <div class="index-view-btn">
               <%= link_to "Request tune", new_user_session_path, class: "btn btn-primary", method: :post %>
@@ -45,7 +51,7 @@
             </div>
           <% elsif @my_tune_requests[0].status == "accepted" %>
             <div class="index-view">
-              <a href="<%= tune.url %> " class="btn btn-success rounded" target="blank">Play/Download tune</a>
+              <%= audio_tag(tune.url, controls: true) %>
             </div>
           <% else %>
             <div class="index-view-btn">
