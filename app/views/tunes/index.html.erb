@@ -11,9 +11,13 @@
       <%= submit_tag "Search", class: "btn btn-secondary m-1" %>
     <% end %>
     </div>
-    <div>
-      <a class="btn btn-primary m-3" href="/tunes/new">Create new tune</a>
-    </div>
+    <% if user_signed_in? %>
+      <div>
+        <a class="btn btn-primary m-3" href="/tunes/new">Create new tune</a>
+      </div>
+    <% else %>
+        <h5 class="text-muted mt-4">Sign in to request and create tunes</h5>
+    <% end %>
   </div>
 
   <div class="container">
@@ -25,13 +29,19 @@
         </div>
         <% @my_tune_requests = @requests.select { |request| request.tune == tune && request.user == current_user } %>
         <% if @my_tune_requests.empty? || @my_tune_requests.nil? %>
-          <div class="index-view-btn">
-            <%= link_to "Request tune", tune_requests_path(tune), class: "btn btn-primary", method: :post %>
-          </div>
+          <% if user_signed_in? %>
+            <div class="index-view-btn">
+              <%= link_to "Request tune", tune_requests_path(tune), class: "btn btn-primary", method: :post %>
+            </div>
+          <% else %>
+            <div class="index-view-btn">
+              <%= link_to "Request tune", new_user_session_path, class: "btn btn-primary", method: :post %>
+            </div>
+          <% end %>
         <% else %>
           <% if @my_tune_requests[0].status == "pending" %>
             <div class="index-view-btn">
-              <a href="" class="btn btn-warning">Tune is pending</a>
+              <a href="" class="btn btn-warning">Pending user ...</a>
             </div>
           <% elsif @my_tune_requests[0].status == "accepted" %>
             <div class="index-view">
@@ -41,7 +51,7 @@
             </div>
           <% else %>
             <div class="index-view-btn">
-              <a href="" class="btn btn-danger">Tune in private</a>
+              <a href="" class="btn btn-danger">Access denied</a>
             </div>
           <% end %>
         <% end %>
